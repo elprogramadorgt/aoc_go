@@ -67,20 +67,39 @@ func SolutionDay03Exercise02() {
 
 	dataArr := initConfig()
 	groupArr := []string{}
-	for _, v := range dataArr {
+	var repeatedLetter []string
+	for i, v := range dataArr {
 		
 		groupArr = append(groupArr, v)
+		
+        if(len(groupArr) == 3){
 
-		if(len(groupArr) == 3){
+            fmt.Println(i, "i on 3")
 
-	//		var repeatedLetter []string
-			for j, item := range groupArr[0]{
-				letter := string(item)
-				fmt.Println(j, letter)
+			for _, item := range groupArr[0]{
+			    letter := string(item)
+                existsInG2 := strings.Contains(groupArr[1], letter)
+                existsInG3 := strings.Contains(groupArr[2], letter)
+                
+                if existsInG2 && existsInG3 {
+                    repeatedLetter = append(repeatedLetter, letter)
+                    
+                    break
+                }
 			}
 			groupArr = nil
 		}
+
 	}
+
+    fmt.Println(repeatedLetter)
+    total := 0
+    for _, letter := range repeatedLetter {
+    
+        total += lettersMap[letter]
+    }
+
+    fmt.Println(total)
 //	for i:=3; i < len(dataArr); i+=3 {
 //		for j := i; j >= i-3; j-- {
 //			fmt.Println(dataArr[j])
